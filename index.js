@@ -1,10 +1,14 @@
+require('dotenv').config()
 const express = require ("express");
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8081;
+const cors = require('cors')
 
 const { dbConnection } = require("./config/config")
 
 app.use(express.json())
+
+app.use(cors())
 
 dbConnection()
 
