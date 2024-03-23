@@ -12,4 +12,6 @@ app.use(cors())
 
 dbConnection()
 
+app.use('/empresas', require('./routes/empresas'))
+
 app.listen(PORT, ()=> console.log(`Server started at port ${PORT}`));
