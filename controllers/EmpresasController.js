@@ -54,6 +54,17 @@ const EmpresasController = {
       console.log(error)
       res.status(500).send({ message: 'error en la petición de datos' })
     }
+  },
+  
+  async getAllBySector(req, res) {
+    const sector = req.params.sector;
+    try {
+      const empresaSector = await Empresas.find({ Sector : sector })
+      res.status(200).send(empresaSector)
+    } catch (error) {
+      console.log(error)
+      res.status(500).send({ message: 'error en la petición de datos' })
+    }
   }
 }
 
