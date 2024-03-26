@@ -57,7 +57,7 @@ const EmpresasController = {
   },
   
   async getAllBySector(req, res) {
-    const sector = req.params.sector;
+    const sector = new RegExp(req.params.Sector, 'i')
     try {
       const empresaSector = await Empresas.find({ Sector : sector })
       res.status(200).send(empresaSector)
@@ -68,10 +68,11 @@ const EmpresasController = {
   },
 
   async getByName(req, res){
-    const nombre = req.params.nombre;
+    const nombre = new RegExp(req.params.Nombre, 'i')
+
     try {
       const empresa = await Empresas.findOne({
-        nombre: nombre
+        Nombre: nombre
       })
       if(empresa){
         res.status(200).send(empresa)
@@ -83,13 +84,23 @@ const EmpresasController = {
       res.status(500).send({ message: 'error en la petición de datos' })
     }
   },
-
+  async getBySize(req, res){
+    const tamano = req.params.Tamano
+    try {
+      const tamanoSelected = await Empresas.find({Tamaño: tamano})
+        res.status(200).send(tamanoSelected)
+    } catch (error) {
+      console.log(error)
+      res.status(500).send({ message: 'error en la petición de datos' })
+    }
+  
+},
 
   //FALTA DEPURAR ESTO (NO TIRA)
 async searchByName(req, res) {
-  const nombre = req.params.nombre; 
+  const nombre = req.params.Nombre; 
   try{
-    const empresas = await Empresas.find({ nombre: new RegExp(nombre, 'i') });
+    const empresas = await Empresas.find({ Nombre: new RegExp(nombre, 'i') });
     if (empresas.length > 0) {
       res.status(200).send(empresas);
     } else {

@@ -4,11 +4,11 @@ const EmpresasController = require('../controllers/EmpresasController')
 
 router.get('/', EmpresasController.getAll)
 router.post('/create', EmpresasController.create)
-router.get('/getAllBySector/:sector', EmpresasController.getAllBySector)
-router.get('/getByName/:nombre', EmpresasController.getByName);
-
+router.get('/getAllBySector/:Sector', EmpresasController.getAllBySector)
+router.get('/getByName/:Nombre', EmpresasController.getByName);
+router.get('/getBySize/:Tamano', EmpresasController.getBySize);
 //SEARCH
-router.get('/search/:nombre', EmpresasController.searchByName);
+router.get('/search/:Nombre', EmpresasController.searchByName);
 
 
 //
